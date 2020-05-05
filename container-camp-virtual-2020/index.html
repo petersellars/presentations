@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Building Secure, Robust and Auditable Docker Containers</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<link rel="stylesheet" href="css/presentation.css"
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-background-image="images/backgrounds/containers.jpg" data-background-opacity="0.1">
+					<textarea data-template>
+						## Building<br/>Secure, Robust and Auditable<br/>Docker Containers
+
+						<br/>
+						<p style="font-size: 0.6em">Pete Sellars<br/>
+						Cloud Engineer @ Catosplace/Hypr</p>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Introduction
+						![SecurityIcon](images/icons/security.png)
+						![RobustIcon](images/icons/robust.png)
+						![AuditIcon](images/icons/audit.png)
+					</textarea>
+				</section>
+				<section data-markdown class="references">
+					<textarea data-template>
+						##### References
+						* TO-DO
+						* TO-DO
+						
+						##### Attributions
+						* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+						* TO-DO
+					</textarea>
+				</section>
+			</div>
+			<div id="catosplace-logo" class="catosplace-logo"></div>
+			<div id="hypr-logo" class="hypr-logo"></div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				hash: false,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+.reveal section img {
+    border: 0;
+    background: none;
+}
+
+.reveal section img[alt=SecurityIcon],
+.reveal section img[alt=RobustIcon],
+.reveal section img[alt=AuditIcon] {
+    width: 40px;
+}
+
+.catosplace-logo {
+    background: url('../images/logos/catosplace.png');
+	position: absolute; 
+	top: 20px; left: 20px; 
+    width: 206px; height: 100px
+}
+
+.hypr-logo {
+    background: url('../images/logos/hypr.png');
+	position: absolute; 
+	bottom: 20px; left: 20px; 
+	width: 144px; height: 100px
+}
+
+.reveal h5 {
+    font-size: 0.8em
+}
+
+.reveal section.references {
+    text-align: left;
+}
+
+.reveal section.references #references,
+.reveal section.references #attributions {
+    margin: 0 0;
+    line-height: normal;
+}
+
+.reveal section.references ul {
+    font-size: 0.4em
+}
