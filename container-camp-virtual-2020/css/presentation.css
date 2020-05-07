@@ -1,12 +1,19 @@
 .reveal section img {
     border: 0;
     background: none;
+    box-shadow: none;
 }
 
 .reveal section img[alt=SecurityIcon],
 .reveal section img[alt=RobustIcon],
 .reveal section img[alt=AuditIcon] {
     width: 40px;
+}
+
+.reveal section#whatwillwecover img[alt=SecurityIcon],
+.reveal section#whatwillwecover img[alt=RobustIcon],
+.reveal section#whatwillwecover img[alt=AuditIcon] {
+    width: 200px;
 }
 
 .catosplace-logo {
@@ -32,6 +39,21 @@
 .reveal section#introduction section p img {
     box-shadow: none;
     margin: 0 0;
+}
+
+.reveal section#introduction section p img[alt=MaximumSecurity] {
+    width: 310px;
+    height: 403px;
+}
+
+.reveal section#introduction section p img[alt=ContainerFail] {
+    width: 375px;
+    height: 281px;
+}
+
+.reveal section#introduction section p img[alt=ComplianceFail] {
+    width: 302px;
+    height: 403px;
 }
 
 .reveal h5 {
