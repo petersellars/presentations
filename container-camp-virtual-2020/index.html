@@ -236,12 +236,126 @@
 					</section>
 				</section>
 				<section id="policies">
-					<section data-markdown>
+					<section data-markdown data-background-image="images/backgrounds/policy.jpg" data-background-opacity="0.2">
 						<textarea data-template>
 							![SecurityIcon](images/icons/security.png)
 							![RobustIcon2](images/icons/robust.png)
 							![AuditIcon3](images/icons/audit.png)
-							# Policies
+							## Policies
+							![PolicyMeme](images/memes/policy.jpg)
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/policy.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Policy Generation
+
+							<p class="para">dockerfile_lint</p>
+
+							```
+							profile:
+							  ...
+							line_rule:
+							  ...
+							required:
+							  ...
+							```
+
+							<p class="para">Line Rule Syntax</p>
+
+							```
+							line_rule:
+							  RUN:
+								paramSyntaxRegex: /.*/
+								rules:
+								  ...
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/policy.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							## Security Policies
+
+							<p class="para">Example Security Rule</p>
+
+							```
+							line_rules:
+							  USER:
+							    paramSyntaxRegex: /^[a-z0-9_][a-z0-9_]{0,40}$/
+							    rules:
+							      -
+								    label: "root_user"
+								    regex: /root|0/
+								    level: "error"
+								    message: "Running as a root user"
+								    description: "Containers should not run as root."
+								    reference_url:
+								      - "https://example.com/should-not-run-as-root"
+							```
+
+							<p class="para">Sample Security Rules<br/>https://github.com/projectatomic/dockerfile_lint/blob/master/sample_rules/security_rules.yaml</p>
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/policy.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![AuditIcon](images/icons/audit.png)
+							## Audit Policies
+
+							<p class="para">Example Audit Rule</p>
+
+							```
+							line_rules:
+							  LABEL:
+								paramSyntaxRegex: /.*
+								defined_namevals:
+								  'org.opencontainers.image.create_date':
+								  valueRegex: /\$CREATE_DATE$/
+								  message: "Label create_date is missing/invalid"
+								  level: "warn"
+								  required: true
+								  reference_url:
+									- "https://opencontainers/annotations.md"
+							```
+
+							<p class="para">Based on Open Container Initative (OCI) Annotations<br>https://github.com/opencontainers/image-spec/blob/master/annotations.md</p>
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/policy.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Continuous<br/>Checking
+
+							<p class="para">Example Policy Checking Make Target</p>
+
+							```
+							check-policies:
+							  @echo "Checking FinShare Container policies..."
+							  @docker run --rm -it --privileged -v $(PWD):/root/ \
+								projectatomic/dockerfile-lint \
+								dockerfile_lint -r policies/all_policy_rules.yml
+							  @echo "FinShare Container policies checked!"
+							```
+
+							<p class="para">Use in Release Process</p>
+
+							```
+							release: ... check-policies ...
+							```
+						</textarea>
+					</section>
+				</section>
+				<section id="policies">
+					<section data-markdown data-background-image="images/backgrounds/ssc.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Software Supply Chain
 						</textarea>
 					</section>
 				</section>
@@ -255,6 +369,9 @@
 						* dgoss - https://github.com/aelsabbahy/goss/tree/master/extras/dgoss
 						* How to test your Docker image in half a second - https://medium.com/@aelsabbahy/tutorial-how-to-test-your-docker-image-in-half-a-second-bbd13e06a4a9
 						* How to Version Your Docker Images - https://medium.com/better-programming/how-to-version-your-docker-images-1d5c577ebf54
+						* dockerfile_lint - https://github.com/projectatomic/dockerfile_lint
+						* Sample Security Rules - https://github.com/projectatomic/dockerfile_lint/blob/master/sample_rules/security_rules.yaml
+						* Open Container Initiative (OCI) Annotations - https://github.com/opencontainers/image-spec/blob/master/annotations.md
 						* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 					</textarea>
 				</section>

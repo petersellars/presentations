@@ -50,7 +50,8 @@
 }
 
 .reveal section#developmentpractices img[alt=SecurityIcon],
-.reveal section#policies img[alt=SecurityIcon] {
+.reveal section#policies img[alt=SecurityIcon],
+.reveal section#policies img[alt=AuditIcon] {
     position: absolute;
     top: 0; left: 20px;
 }
