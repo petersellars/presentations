@@ -6,7 +6,9 @@
 
 .reveal section img[alt=SecurityIcon],
 .reveal section img[alt=RobustIcon],
-.reveal section img[alt=AuditIcon] {
+.reveal section img[alt=RobustIcon2],
+.reveal section img[alt=AuditIcon],
+.reveal section img[alt=AuditIcon3] {
     width: 40px;
 }
 
@@ -26,10 +28,43 @@
 
 .hypr-logo {
     background: url('../images/logos/hypr.png');
-	position: absolute; 
+    position: absolute;
+    float: right;
 	bottom: 20px; left: 20px; 
     width: 144px; height: 100px;
     z-index: 100;
+}
+
+.reveal pre code {
+    background-color: grey;
+    opacity: 0.75;
+}
+
+.reveal section section p.para {
+    font-size: 20px;
+}
+
+.reveal section#developmentpractices img[alt=RobustIcon] {
+    position: absolute;
+    top: 0; left: 20px;
+}
+
+.reveal section#developmentpractices img[alt=SecurityIcon],
+.reveal section#policies img[alt=SecurityIcon] {
+    position: absolute;
+    top: 0; left: 20px;
+}
+
+.reveal section#developmentpractices img[alt=RobustIcon2],
+.reveal section#policies img[alt=RobustIcon2] {
+    position: absolute;
+    top: 0; left: 65px;
+}
+
+.reveal section#developmentpractices img[alt=AuditIcon3],
+.reveal section#policies img[alt=AuditIcon3] {
+    position: absolute;
+    top: 0; left: 110px;
 }
 
 .reveal section#introduction section p {

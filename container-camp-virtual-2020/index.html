@@ -68,11 +68,11 @@
 					</section>
 					<section data-markdown data-background-image="images/backgrounds/builders.jpg" data-background-opacity="0.2">
 						<textarea data-template>
-							Development Practices<br/>
-							Policies<br/>
-							Software Supply Chain<br/>
-							Trusted Content<br/>
-							Operational Concerns
+							**Development Practices**<br/>
+							**Policies**<br/>
+							**Software Supply Chain**<br/>
+							**Trusted Content**<br/>
+							**Operational Concerns**
 						</textarea>
 					</section>
 					<section data-markdown data-background-image="images/backgrounds/builders.jpg" data-background-opacity="0.2">
@@ -83,11 +83,178 @@
 						</textarea>
 					</section>
 				</section>
+				<section id="developmentpractices">
+					<section data-markdown data-background-image="images/backgrounds/developer.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Development<br/>Practices
+							![DevPractices](images/memes/devpractices.png)
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/developer.jpg" data-background-opacity="0.2">
+						<div id="robust-icon" class="robust-icon"></div>
+						<textarea data-template>
+							![RobustIcon](images/icons/robust.png)
+							## Static Analysis
+							**Hadolint**
+
+							```
+							docker run --rm -i hadolint/hadolint:v1.17.5 < Dockerfile
+							```
+
+							<p class="para">Ignore Rules</p>
+
+							```
+							docker run --rm -i hadolint/hadolint:v1.17.5 
+							  hadolint --ignore DL3018 < Dockerfile
+							```
+
+							<p class="para">Ignore Rules (.hadolint.yaml)</p>
+
+							```
+							ignored:
+							  - DL3018
+							```
+
+							<p class="para">Ignore Rules (inline)</p>
+
+							```
+							# hadolint ignore=DL3018
+							Run cd /tmp && echo "hello!"
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/developer.jpg" data-background-opacity="0.2">
+						<div id="robust-icon" class="robust-icon">TEST</div>
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							## Content Download Checksums
+
+							<p class="para">Verify using Checksum in Dockerfile</p>
+
+							```
+							RUN wget \
+								https://github.com/example/download/app.tar.gz
+
+							RUN wget \
+								https://github.com/example/download/app_checksums.txt \
+								&& sed -i '/app/!d' "app_checksums.txt" \
+								&& sha256sum -cs "app_checksums.txt" \
+								&& tar -xzvf app
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/developer.jpg" data-background-opacity="0.2">
+						<div id="robust-icon" class="robust-icon"></div>
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							### Testing with<br/>goss/dgoss
+
+							<p class="para">Run Tests</p>
+
+							```
+							dgoss run our_app
+							```
+
+							<p class="para">Edit Tests</p>
+
+							```
+							dgoss edit our_app
+							```
+
+							<p class="para">Writing Initial Tests</p>
+
+							```
+							goss add process
+							exit
+							```
+
+							<p class="para">goss.yaml</p>
+
+							```
+							process:
+							  app:
+							    running: true
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/developer.jpg" data-background-opacity="0.2">
+						<div id="robust-icon" class="robust-icon"></div>
+						<textarea data-template>
+							![RobustIcon](images/icons/robust.png)
+							## Versioning
+
+							<p class="para">Use a VERSION file</p>
+
+							```
+							0.0.1
+							```
+
+							<p class="para">Tag using the VERSION file</p>
+
+							```
+							version=`cat VERSION`
+							docker tag org/app:$version
+							```
+
+							<p class="para">Using the Git SHA</p>
+
+							```
+							version=`cat VERSION`
+							docker tag org/app:$version-GIT_SHA
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/developer.jpg" data-background-opacity="0.2">
+						<div id="robust-icon" class="robust-icon"></div>
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Pipelines
+
+							<p class="para">Simple Makefile Target</p>
+
+							```
+							lint:
+							  @echo "Linting the Hugo Builder container..."
+							  @docker run --rm -i hadolint/hadolint:v1.17.5-alpine \
+								hadolint --ignore DL3018 - < Dockerfile
+								@echo "Linting completed!" 
+							```
+
+							<p class="para">Simple Makefile Release Pipeline</p>
+
+							```
+							release: lint test check-policies bom version sign-image
+							```
+						</textarea>
+					</section>
+				</section>
+				<section id="policies">
+					<section data-markdown>
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							# Policies
+						</textarea>
+					</section>
+				</section>
 				<section data-markdown class="references" data-background-image="images/backgrounds/containers.jpg" data-background-opacity="0.2">
 					<textarea data-template>
 						##### References
-						* TO-DO
-						* TO-DO
+						* Hadolint - https://github.com/hadolint/hadolint
+						* Best practices for writing Dockerfiles - https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+						* 6 Dockerfile tips from the Official Images - https://blog.container-solutions.com/6-dockerfile-tips-official-images
+						* goss - https://github.com/aelsabbahy/goss
+						* dgoss - https://github.com/aelsabbahy/goss/tree/master/extras/dgoss
+						* How to test your Docker image in half a second - https://medium.com/@aelsabbahy/tutorial-how-to-test-your-docker-image-in-half-a-second-bbd13e06a4a9
+						* How to Version Your Docker Images - https://medium.com/better-programming/how-to-version-your-docker-images-1d5c577ebf54
 						* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 					</textarea>
 				</section>
