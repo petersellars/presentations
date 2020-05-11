@@ -453,6 +453,119 @@
 						</textarea>
 					</section>					
 				</section>
+				<section id="trusted_content">
+					<section data-markdown data-background-image="images/backgrounds/trusted_content.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![AuditIcon2](images/icons/audit.png)
+							## Trusted Content
+							![TrustMeme](images/memes/trust.jpg)
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/trusted_content.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![AuditIcon2](images/icons/audit.png)
+							## Docker<br/>Content Trust<br/>(DCT)
+							![DCT](images/dct.png)
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/trusted_content.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							## Signing Keys
+
+							<p class="para">Creating Signing Keys with DCT</p>
+
+							```
+							$ docker trust key generate ourOrg
+							Generating key for ourOrg...
+							```
+							
+							<p class="para">Add the Key to the Notary Server</p>
+
+							```
+							$ docker trust signer add ourOrg ourOrg/ourApp
+							Adding signer "ourOrg" to ourOrg/ourApp
+							```
+
+							<p class="para">Loading Existing Keys with DCT</p>
+
+							```
+							$ docker trust key load key.pem --name ourOrg
+							Loading key from "key.pem"...
+							```
+
+							<p class="para">Add an existing Key to the Notary Server</p>
+
+							```
+							$ docker trust signer add --key cert.pem ourOrg ourOrg/ourApp
+							Adding signer "ourOrg" to ourOrg/ourApp
+							```
+
+							<p class="para">All Keys stored in local Docker Trust repository ~/.docker/trust</p>
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/trusted_content.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![AuditIcon2](images/icons/audit.png)
+							## Signing Images
+
+							<p class="para">Signing and Pushing an Image with DCT</p>
+
+							```
+							$ docker trust sign ourOrg/ourApp
+							Signing and pushing trust data for local
+							  image ourOrg/ourApp:v1.0.0 ...
+							```
+
+							<p class="para">Inspect the Remote Trust Data</p>
+
+							```
+							$ docker trust inspect --pretty ourOrg/ourApp:v1.0.0
+
+							Signatures for ourApp/ourOrg:v1.0.0
+
+							SIGNED TAG		DIGEST 				SIGNERS
+							v1.0.0			3d2e482b82608d15...	ourOrg
+
+							...
+							```
+
+							<p class="para">Revoke Trust with DCT</p>
+
+							```
+							$ docker trust revoke ourOrg/ourApp:v1.0.0
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/trusted_content.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![AuditIcon2](images/icons/audit.png)
+							## Enabling Docker<br/> Content Trust
+
+							<p class="para">DCT Trust Client Enforcement</p>
+
+							```
+							export DOCKER_CONTENT_TRUST=1
+							```
+
+							<p class="para">Enabling DCT in Docker Enterprise Edition</p>
+
+							```
+							{
+								"content-trust": {
+									"mode": "enforced"
+								}
+							}
+							```
+
+							<p class="para">Configuration file, usually /etc/docker/daemon.json</p>
+						</textarea>
+					</section>
+				</section>
 				<section data-markdown class="references" data-background-image="images/backgrounds/containers.jpg" data-background-opacity="0.2">
 					<textarea data-template>
 						##### References
@@ -473,6 +586,13 @@
 						* Tern - https://github.com/tern-tools/tern
 						* Container BoM Inspection with Tern - https://www.slideshare.net/KariFredheim/container-bom-inspection-with-tern
 						* Software Package Data Exchange (SPDX) - https://spdx.org/
+						* Content trust in Docker - https://docs.docker.com/engine/security/trust/content_trust/
+						* Docker trust command - https://docs.docker.com/engine/reference/commandline/trust/
+						* The Update Framework (TUF) - https://theupdateframework.com/
+						* Notary - https://github.com/theupdateframework/notary
+						* Getting started with Docker Notary - https://github.com/theupdateframework/notary/blob/master/docs/getting_started.md
+						* Signing Docker images using Docker Content Trust - https://marcofranssen.nl/signing-docker-images-using-docker-content-trust/
+						* Automation with Content Trust - https://docs.docker.com/engine/security/trust/trust_automation/
 						* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 					</textarea>
 				</section>

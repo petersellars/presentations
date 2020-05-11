@@ -49,7 +49,8 @@
 .reveal section#developmentpractices img[alt=SecurityIcon],
 .reveal section#policies img[alt=SecurityIcon],
 .reveal section#policies img[alt=AuditIcon],
-.reveal section#supply_chain img[alt=SecurityIcon] {
+.reveal section#supply_chain img[alt=SecurityIcon],
+.reveal section#trusted_content img[alt=SecurityIcon] {
     position: absolute;
     top: 0; left: 20px;
 }
@@ -57,7 +58,8 @@
 .reveal section#developmentpractices img[alt=RobustIcon2],
 .reveal section#policies img[alt=RobustIcon2],
 .reveal section#supply_chain img[alt=RobustIcon2],
-.reveal section#supply_chain img[alt=AuditIcon2] {
+.reveal section#supply_chain img[alt=AuditIcon2],
+.reveal section#trusted_content img[alt=AuditIcon2] {
     position: absolute;
     top: 0; left: 65px;
 }
