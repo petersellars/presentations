@@ -349,15 +349,109 @@
 						</textarea>
 					</section>
 				</section>
-				<section id="policies">
-					<section data-markdown data-background-image="images/backgrounds/ssc.jpg" data-background-opacity="0.2">
+				<section id="supply_chain">
+					<section data-markdown data-background-image="images/backgrounds/supply_chain.png" data-background-opacity="0.2">
 						<textarea data-template>
 							![SecurityIcon](images/icons/security.png)
 							![RobustIcon2](images/icons/robust.png)
 							![AuditIcon3](images/icons/audit.png)
-							## Software Supply Chain
+							## Software<br/>Supply Chain
+							![BOMMeme](images/memes/bom.jpg)
 						</textarea>
 					</section>
+					<section data-markdown data-background-image="images/backgrounds/supply_chain.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![AuditIcon2](images/icons/audit.png)
+							## Security Scanning
+
+							<p class="para">Run Clair DB</p>
+
+							```
+							docker run -d --name clair-db \
+							  arminc/clair-db:$(date +%Y-%m-%d)
+							```
+
+							<p class="para">Run Clair Container</p>
+
+							```
+							docker run --net=host -d -p 6060-6061:6060-6061 \
+							  -v $PWD/clair_config:/config \
+							  quay.io/coreos/clair:latest -config=/config/config.yaml
+							```
+
+							<p class="para">Use `clair-scanner`</p>
+
+							```
+							clair-scanner --ip localhost lp/hugo-builder
+							```
+
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/supply_chain.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Bill Of Materials
+
+							<p class="para">Run Tern Container using Docker Image</p>
+
+							```
+							./docker_run.sh workdir ternd "report -i ourOrg/ourApp"
+							```
+
+							<p class="para">Output JSON Format</p>
+
+							```
+							./docker_run.sh workdir ternd \
+							  "report -f json -i ourOrg/ourApp"
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/supply_chain.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![AuditIcon2](images/icons/audit.png)
+							## Reporting Use
+
+							<p class="para">Output SPDX tag-value Format</p>
+
+							```
+							./docker_run.sh workdir ternd \
+							  "report -f spdxtagvalue -i ourOrg/ourApp" > spdx.txt
+							```
+
+							<p class="para">Software Package Data Exchange (SPDX)<br/>https://spdx.org/</p>
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/supply_chain.png" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Locked<br/>Dockerfile
+
+							<p class="para">Tern lock command</p>
+
+							```
+							tern lock Dockerfile
+							```
+
+							<p class="para">Dockerfile.lock</p>
+
+							```
+							ARG VERSION=0.64.0
+							FROM alpine@sha256:b276d875eeed9c7d3f1...
+							```
+
+							<p class="para">Potential Dockerfile.lock issue</p>
+
+							```
+							RUN apk add --no-cache curl
+							```
+						</textarea>
+					</section>					
 				</section>
 				<section data-markdown class="references" data-background-image="images/backgrounds/containers.jpg" data-background-opacity="0.2">
 					<textarea data-template>
@@ -372,6 +466,13 @@
 						* dockerfile_lint - https://github.com/projectatomic/dockerfile_lint
 						* Sample Security Rules - https://github.com/projectatomic/dockerfile_lint/blob/master/sample_rules/security_rules.yaml
 						* Open Container Initiative (OCI) Annotations - https://github.com/opencontainers/image-spec/blob/master/annotations.md
+						* Clair - https://github.com/quay/clair
+						* Running Clair - https://github.com/quay/clair/blob/master/Documentation/running-clair.md
+						* clair-scanner - https://github.com/arminc/clair-scanner
+						* Docker containers vulnerability scan with Clair - https://xebia.com/blog/docker-containers-vulnerability-scan-clair/
+						* Tern - https://github.com/tern-tools/tern
+						* Container BoM Inspection with Tern - https://www.slideshare.net/KariFredheim/container-bom-inspection-with-tern
+						* Software Package Data Exchange (SPDX) - https://spdx.org/
 						* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 					</textarea>
 				</section>

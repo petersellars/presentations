@@ -8,6 +8,7 @@
 .reveal section img[alt=RobustIcon],
 .reveal section img[alt=RobustIcon2],
 .reveal section img[alt=AuditIcon],
+.reveal section img[alt=AuditIcon2],
 .reveal section img[alt=AuditIcon3] {
     width: 40px;
 }
@@ -44,26 +45,26 @@
     font-size: 20px;
 }
 
-.reveal section#developmentpractices img[alt=RobustIcon] {
-    position: absolute;
-    top: 0; left: 20px;
-}
-
+.reveal section#developmentpractices img[alt=RobustIcon],
 .reveal section#developmentpractices img[alt=SecurityIcon],
 .reveal section#policies img[alt=SecurityIcon],
-.reveal section#policies img[alt=AuditIcon] {
+.reveal section#policies img[alt=AuditIcon],
+.reveal section#supply_chain img[alt=SecurityIcon] {
     position: absolute;
     top: 0; left: 20px;
 }
 
 .reveal section#developmentpractices img[alt=RobustIcon2],
-.reveal section#policies img[alt=RobustIcon2] {
+.reveal section#policies img[alt=RobustIcon2],
+.reveal section#supply_chain img[alt=RobustIcon2],
+.reveal section#supply_chain img[alt=AuditIcon2] {
     position: absolute;
     top: 0; left: 65px;
 }
 
 .reveal section#developmentpractices img[alt=AuditIcon3],
-.reveal section#policies img[alt=AuditIcon3] {
+.reveal section#policies img[alt=AuditIcon3],
+.reveal section#supply_chain img[alt=AuditIcon3] {
     position: absolute;
     top: 0; left: 110px;
 }
