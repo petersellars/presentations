@@ -50,7 +50,9 @@
 .reveal section#policies img[alt=SecurityIcon],
 .reveal section#policies img[alt=AuditIcon],
 .reveal section#supply_chain img[alt=SecurityIcon],
-.reveal section#trusted_content img[alt=SecurityIcon] {
+.reveal section#trusted_content img[alt=SecurityIcon],
+.reveal section#operational img[alt=SecurityIcon],
+.reveal section#operational img[alt=RobustIcon] {
     position: absolute;
     top: 0; left: 20px;
 }
@@ -59,14 +61,16 @@
 .reveal section#policies img[alt=RobustIcon2],
 .reveal section#supply_chain img[alt=RobustIcon2],
 .reveal section#supply_chain img[alt=AuditIcon2],
-.reveal section#trusted_content img[alt=AuditIcon2] {
+.reveal section#trusted_content img[alt=AuditIcon2],
+.reveal section#operational img[alt=RobustIcon2] {
     position: absolute;
     top: 0; left: 65px;
 }
 
 .reveal section#developmentpractices img[alt=AuditIcon3],
 .reveal section#policies img[alt=AuditIcon3],
-.reveal section#supply_chain img[alt=AuditIcon3] {
+.reveal section#supply_chain img[alt=AuditIcon3],
+.reveal section#operational img[alt=AuditIcon3] {
     position: absolute;
     top: 0; left: 110px;
 }
@@ -110,5 +114,5 @@
 }
 
 .reveal section.references ul {
-    font-size: 0.4em;
+    font-size: 0.35em;
 }

@@ -566,6 +566,73 @@
 						</textarea>
 					</section>
 				</section>
+				<section id="operational">
+					<section data-markdown data-background-image="images/backgrounds/operations.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Operational<br/>Concerns
+							![OpsMeme](images/memes/ops.jpg)
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/operations.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![RobustIcon](images/icons/robust.png)
+							## init
+
+							<p class="para">Docker advocates using Tini<br/>https://github.com/docker-library/official-images#init</p>
+
+							<p class="para">Use the <code>--init</code> flag in Docker 1.13+</p>
+
+							```
+							docker run --init ourOrg/ourApp
+							```
+
+							<p class="para">Add Tini to your container</p>
+
+							```
+							# Add Tini
+							ENV TINI_VERSION v0.19.0
+							ADD \
+							  https://github.com/tini/download/${TINI_VERSION}/tini \
+							  /tini
+							RUN chmod +x /tini
+							ENTRYPOINT ["/tini", "--"]
+							
+							# Run your program under Tini
+							CMD ["/your/program", "-and", "-its", "arguments"]
+							# or docker run your-image /your/program ...
+							```
+						</textarea>
+					</section>
+					<section data-markdown data-background-image="images/backgrounds/operations.jpg" data-background-opacity="0.2">
+						<textarea data-template>
+							![SecurityIcon](images/icons/security.png)
+							![RobustIcon2](images/icons/robust.png)
+							![AuditIcon3](images/icons/audit.png)
+							## Multi-Stage<br/>Builds
+
+							<p class="para">Multi-Stage Build Example</p>
+
+							```
+							FROM golang:1.7.3 AS builder
+							WORKDIR /go/src/github.com/alexellis/href-counter/
+							RUN go get -d -v golang.org/x/net/html  
+							COPY app.go .
+							RUN CGO_ENABLED=0 GOOS=linux \
+							  go build -a -installsuffix cgo -o app .
+							
+							FROM alpine:latest  
+							RUN apk --no-cache add ca-certificates
+							WORKDIR /root/
+							COPY --from=builder \
+							  /go/src/github.com/alexellis/href-counter/app .
+							CMD ["./app"]  
+							```
+						</textarea>
+					</section>
+				</section>
 				<section data-markdown class="references" data-background-image="images/backgrounds/containers.jpg" data-background-opacity="0.2">
 					<textarea data-template>
 						##### References
@@ -593,6 +660,9 @@
 						* Getting started with Docker Notary - https://github.com/theupdateframework/notary/blob/master/docs/getting_started.md
 						* Signing Docker images using Docker Content Trust - https://marcofranssen.nl/signing-docker-images-using-docker-content-trust/
 						* Automation with Content Trust - https://docs.docker.com/engine/security/trust/trust_automation/
+						* Docker Official Images init - https://github.com/docker-library/official-images#init
+						* Docker demons: PID-1, orphans, zombies and signals - https://www.fpcomplete.com/blog/2016/10/docker-demons-pid1-orphans-zombies-signals
+						* Tini - https://github.com/krallin/tini
 						* Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 					</textarea>
 				</section>
